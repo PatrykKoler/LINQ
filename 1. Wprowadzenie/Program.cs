@@ -13,6 +13,20 @@ namespace _1.Wprowadzenie
         {
             var sciezka = @"C:\windows";
             PokazPlikiBezLinqu(sciezka);
+
+            Console.WriteLine("_______________________________________");
+            PokazPlikizLinqu(sciezka);
+        }
+
+        private static void PokazPlikizLinqu(string sciezka)
+        {
+            var zapytanie = from plik in new DirectoryInfo(sciezka).GetFiles()
+                            orderby plik.Length descending
+                            select plik;
+            foreach (var item in zapytanie.Take(5))
+            {
+                Console.WriteLine($"{item.Name,-20} : {item.Length,15:N0}");
+            }
         }
 
         private static void PokazPlikiBezLinqu(string sciezka)
