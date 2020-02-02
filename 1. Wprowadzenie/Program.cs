@@ -14,8 +14,23 @@ namespace _1.Wprowadzenie
             var sciezka = @"C:\windows";
             PokazPlikiBezLinqu(sciezka);
 
-            Console.WriteLine("_______________________________________");
+            Console.WriteLine("_________________________________________");
             PokazPlikizLinqu(sciezka);
+            
+            Console.WriteLine("_________________________________________");
+            PokazPlikizLinqu2(sciezka);
+        }
+
+        private static void PokazPlikizLinqu2(string sciezka)
+        {
+            var zapytanie = new DirectoryInfo(sciezka).GetFiles()
+                            .OrderByDescending(p => p.Length).Take(5);
+
+
+            foreach (var item in zapytanie.Take(5))
+            {
+                Console.WriteLine($"{item.Name,-20} : {item.Length,15:N0}");
+            }
         }
 
         private static void PokazPlikizLinqu(string sciezka)
